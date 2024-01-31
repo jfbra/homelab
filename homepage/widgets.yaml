@@ -2,6 +2,9 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/en/configs/widgets
 
+- logo:
+    icon: https://www.freepnglogos.com/uploads/trumpet-png/clipart-trumpet-12.png
+
 - resources:
     cpu: true
     memory: true

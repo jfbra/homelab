@@ -17,13 +17,49 @@
     - Portainer:
         icon: portainer.png
         href: https://10.10.30.11:9443
+        description: docker01
         widget:
             type: portainer
             url: https://10.10.30.11:9443
             env: 2
             key: {{HOMEPAGE_VAR_PORTAINER_APIKEY}}
 
+- Monitoring:
+    - Grafana:
+        icon: grafana.png
+        url: http://monitoring.jfbrady.com:3000
+        widget:
+            type: grafana
+            url: http://monitoring.jfbrady.com:3000
+            username: {{HOMEPAGE_VAR_GRAFANA_USR}}
+            password: {{HOMEPAGE_VAR_GRAFANA_PWD}}
+
+    - Prometheus:
+        icon: prometheus.png
+        href: http://monitoring.jfbrady.com:9090
+        widget:
+            type: prometheus
+            url: http://monitoring.jfbrady.com:9090
+
 - Network:
+    - pfSense:
+        icon: pfsense.png
+        href: http://pfsense.jfbrady.com
+        widget:
+            type: pfsense
+            url: http://pfsense.jfbrady.com
+            username: {{HOMEPAGE_VAR_PFSUSR}}
+            password: {{HOMEPAGE_VAR_PFSPWD}}
+            wan: igb0
+    
+    - Pi-hole:
+        icon: pi-hole.png
+        href: http://pihole.jfbrady.com/admin
+        widget:
+            type: pihole
+            url: http://pihole.jfbrady.com
+            key: {{HOMEPAGE_VAR_PIHOLE_APIKEY}}
+
     - UniFi Controller:
         icon: unifi.png
         url: https://unifi.jfbrady.com:8443
@@ -44,6 +80,9 @@
             url: https://traefik.jfbrady.com
             username: {{HOMEPAGE_VAR_TRAEFIKUSR}}
             password: {{HOMEPAGE_VAR_TRAEFIKPWD}}
+
+
+
 
     
 
