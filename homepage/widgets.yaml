@@ -1,0 +1,20 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/en/configs/widgets
+
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+
+- search:
+    provider: google
+    target: _blank
+
+- openmeteo:
+    label: Auckland
+    latitude: 36.8509
+    longitde: 174.7645
+    # timezone: Europe/Kiev
+    units: metric
+    cache: 5 # Time in minutes to cache API responses, to stay within limits

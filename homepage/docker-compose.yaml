@@ -1,0 +1,44 @@
+version: "3.3"
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    restart: always
+    volumes:
+      - /home/jfbrady/docker/homepage:/config # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
+    networks:
+      proxy:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.homepage.entrypoints=http"
+      - "traefik.http.routers.homepage.rule=Host(`homepage.jfbrady.com`)"
+# Redirect https to https.
+      - "traefik.http.middlewares.homepage-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.homepage.middlewares=homepage-https-redirect"
+# Https.
+      - "traefik.http.routers.homepage-secure.entrypoints=https"
+      - "traefik.http.routers.homepage-secure.rule=Host(`homepage.jfbrady.com`)"
+      - "traefik.http.routers.homepage-secure.tls=true"
+      - "traefik.http.routers.homepage-secure.service=homepage"
+# Where traefik should communicate with homepage.
+      - "traefik.http.services.homepage.loadbalancer.server.port=3000"
+     # - "traefik.http.routers.nginx-secure.middlewares=middlewares-authentik@file"
+     # - "traefik.docker.network=proxy"
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - HOMEPAGE_VAR_TRAEFIKUSR=${TRAEFIKUSR}
+      - HOMEPAGE_VAR_TRAEFIKPWD=${TRAEFIKPWD}
+      - HOMEPAGE_VAR_OPENWEATHERMAPAPIKEY=${OPENWEATHERMAPAPIKEY}
+      - HOMEPAGE_VAR_PROXMOX_USR=${PROXMOX_USR}
+      - HOMEPAGE_VAR_PROXMOX_PWD=${PROXMOX_PWD}
+      - HOMEPAGE_VAR_UNIFI_USR=${UNIFI_USR}
+      - HOMEPAGE_VAR_UNIFI_PWD=${UNIFI_PWD}
+      - HOMEPAGE_VAR_PORTAINER_APIKEY=${PORTAINER_APIKEY}
+
+networks:
+  proxy:
+    external: true

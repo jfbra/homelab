@@ -1,0 +1,49 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/en/configs/services
+
+- Infrastructure:
+    - Proxmox:
+        icon: proxmox.png
+        href: https://pve.jfbrady.com:8006
+        server: vmhost
+        widget:
+            type: proxmox
+            url: https://pve.jfbrady.com:8006
+            username: {{HOMEPAGE_VAR_PROXMOX_USR}}
+            password: {{HOMEPAGE_VAR_PROXMOX_PWD}}
+            node: vmhost
+
+    - Portainer:
+        icon: portainer.png
+        href: https://10.10.30.11:9443
+        widget:
+            type: portainer
+            url: https://10.10.30.11:9443
+            env: 2
+            key: {{HOMEPAGE_VAR_PORTAINER_APIKEY}}
+
+- Network:
+    - UniFi Controller:
+        icon: unifi.png
+        url: https://unifi.jfbrady.com:8443
+        href: https://unifi.jfbrady.com:8443
+        username: {{HOMEPAGE_VAR_UNIFI_USR}}
+        password: {{HOMEPAGE_VAR_UNIFI_PWD}}
+        widget:
+            type: unifi
+            url: https://unifi.jfbrady.com:8443
+            username: {{HOMEPAGE_VAR_UNIFI_USR}}
+            password: {{HOMEPAGE_VAR_UNIFI_PWD}}
+
+    - Traefik:
+        icon: traefik.png
+        href: https://traefik.jfbrady.com
+        widget:
+            type: traefik
+            url: https://traefik.jfbrady.com
+            username: {{HOMEPAGE_VAR_TRAEFIKUSR}}
+            password: {{HOMEPAGE_VAR_TRAEFIKPWD}}
+
+    
+
